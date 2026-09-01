@@ -49,7 +49,7 @@
     }
   </script>
 
-  <link rel="stylesheet" href="./css/styles.css?v=12" />
+  <link rel="stylesheet" href="./css/styles.css?v=13" />
 </head>
 <body class="bg-ink-900 text-white font-body antialiased overflow-x-hidden">
 
@@ -117,13 +117,13 @@
 
           <!-- Content -->
           <div class="relative flex flex-col items-center text-center">
-            <div class="banner-title font-hand text-white leading-none tracking-tight whitespace-nowrap" style="font-size: clamp(2rem, 11vw, 12rem);">
+            <div class="banner-title font-hand text-white leading-none tracking-tight whitespace-nowrap" style="font-size: clamp(2.6rem, 14vw, 16rem);">
               <span class="letter" style="--i:0">K</span><span class="letter" style="--i:1">l</span><span class="letter" style="--i:2">a</span><span class="letter" style="--i:3">r</span>
               <span class="letter amp" style="--i:4">&amp;</span>
               <span class="letter" style="--i:5">S</span><span class="letter" style="--i:6">i</span><span class="letter" style="--i:7">m</span><span class="letter" style="--i:8">p</span><span class="letter" style="--i:9">l</span><span class="letter" style="--i:10">e</span>
             </div>
 
-            <div class="banner-sub mt-6 sm:mt-8 uppercase text-white/90 font-bold tracking-[0.35em] text-sm sm:text-base">
+            <div class="banner-sub mt-6 sm:mt-10 uppercase text-white/90 font-bold tracking-[0.3em] text-base sm:text-xl md:text-2xl">
               Komplexe Themen · Einfach erklärt
             </div>
 
@@ -300,145 +300,36 @@
         </p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6">
+      <!-- Single placeholder — no name, no price -->
+      <div class="max-w-2xl mx-auto">
+        <div data-slide-in class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-brand-600 via-brand-500 to-brand-800 p-10 sm:p-14 min-h-[360px] shadow-2xl shadow-brand-500/40">
+          <!-- decorative dots -->
+          <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(rgba(255,255,255,.5) 1.5px, transparent 1.5px); background-size: 24px 24px;"></div>
+          <!-- glow orbs -->
+          <div class="absolute -top-24 -left-24 w-64 h-64 rounded-full bg-accent-yellow/30 blur-3xl newsletter-blob-1"></div>
+          <div class="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-brand-300/40 blur-3xl newsletter-blob-2"></div>
 
-        <!-- Product 1 -->
-        <div data-slide-in class="flip-card group cursor-pointer min-h-[440px]">
-          <div class="flip-inner">
-            <!-- FRONT -->
-            <div class="flip-face flip-front rounded-3xl overflow-hidden bg-gradient-to-br from-brand-600 to-brand-800 p-8 flex flex-col justify-between">
-              <div class="relative z-10">
-                <div class="text-xs uppercase font-bold tracking-widest text-brand-200 mb-3 flex items-center gap-2">
-                  <span class="w-8 h-[2px] bg-brand-200"></span> Buch 1 · Menschen
-                </div>
-                <h3 class="font-display font-bold text-4xl leading-tight">Menschen<br />lesen</h3>
-                <p class="mt-4 text-white/80 text-sm leading-relaxed">
-                  Der Praxisguide: Mikroausdrücke, Körpersprache, Sätze zwischen den Zeilen. So verstehst du sofort, was andere wirklich meinen.
-                </p>
-              </div>
-              <div class="relative z-10 flex items-end justify-between mt-6">
-                <div>
-                  <div class="text-xs text-white/60 uppercase tracking-widest">In Arbeit</div>
-                  <div class="font-display font-bold text-2xl mt-1">Coming soon</div>
-                </div>
-                <div class="rounded-full bg-white/15 backdrop-blur px-4 py-2 text-sm font-semibold flip-hint">Umdrehen ↻</div>
-              </div>
-              <div class="product-number">01</div>
+          <div class="relative flex flex-col items-center text-center">
+            <div class="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur border border-white/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest mb-8">
+              <span class="w-2 h-2 rounded-full bg-accent-yellow animate-pulse"></span>
+              Bald verfügbar
             </div>
-            <!-- BACK -->
-            <div class="flip-face flip-back rounded-3xl overflow-hidden bg-white text-ink-900 p-8 flex flex-col justify-between">
-              <div>
-                <div class="text-xs uppercase font-bold tracking-widest text-brand-600 mb-3">Was drin ist</div>
-                <ul class="space-y-3 text-sm">
-                  <li class="flex gap-3"><span class="flip-check">✓</span>7 Kapitel Mikroausdrücke &amp; Körpersprache</li>
-                  <li class="flex gap-3"><span class="flip-check">✓</span>Über 40 Praxis-Beispiele</li>
-                  <li class="flex gap-3"><span class="flip-check">✓</span>Checkliste für Alltag &amp; Beruf</li>
-                  <li class="flex gap-3"><span class="flip-check">✓</span>PDF-Download, sofort verfügbar</li>
-                </ul>
-              </div>
-              <div>
-                <div class="flex items-baseline gap-2 mb-4">
-                  <span class="line-through text-ink-900/40 text-lg">19,95 €</span>
-                  <span class="font-display font-bold text-3xl text-brand-600">9,95 €</span>
-                </div>
-                <button class="w-full rounded-2xl bg-brand-500 hover:bg-brand-600 text-white font-bold py-3 transition cursor-pointer">Vorbestellen →</button>
-              </div>
+
+            <div class="font-hand text-white leading-none tracking-tight" style="font-size: clamp(3rem, 8vw, 6rem);">
+              in Arbeit
             </div>
+
+            <p class="mt-6 text-white/85 text-lg leading-relaxed max-w-lg">
+              An etwas Großem wird gerade geschraubt. Sobald es fertig ist, erfährst du es zuerst über den Newsletter.
+            </p>
+
+            <a href="#newsletter"
+               class="mt-8 inline-flex items-center gap-2 rounded-2xl bg-ink-900 hover:bg-ink-800 text-white px-6 py-3 font-semibold shadow-lg transition cursor-pointer">
+              Newsletter abonnieren
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
           </div>
         </div>
-
-        <!-- Product 2 -->
-        <div data-slide-in class="flip-card group cursor-pointer min-h-[440px]">
-          <div class="flip-inner">
-            <!-- FRONT -->
-            <div class="flip-face flip-front rounded-3xl overflow-hidden bg-ink-800 border border-white/10 p-8 flex flex-col justify-between relative">
-              <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-accent-yellow/20 blur-3xl"></div>
-              <div class="relative z-10">
-                <div class="text-xs uppercase font-bold tracking-widest text-accent-yellow mb-3 flex items-center gap-2">
-                  <span class="w-8 h-[2px] bg-accent-yellow"></span> Buch 2 · Innere Ruhe
-                </div>
-                <h3 class="font-display font-bold text-4xl leading-tight">Klarer<br />denken</h3>
-                <p class="mt-4 text-white/70 text-sm leading-relaxed">
-                  30 Tage Journal für weniger Grübeln, mehr Klarheit. Tägliche Impulse basierend auf Psychologie und Neurowissenschaft.
-                </p>
-              </div>
-              <div class="relative z-10 flex items-end justify-between mt-6">
-                <div>
-                  <div class="text-xs text-white/50 uppercase tracking-widest">In Arbeit</div>
-                  <div class="font-display font-bold text-2xl mt-1">Coming soon</div>
-                </div>
-                <div class="rounded-full bg-white/10 px-4 py-2 text-sm font-semibold flip-hint">Umdrehen ↻</div>
-              </div>
-              <div class="product-number">02</div>
-            </div>
-            <!-- BACK -->
-            <div class="flip-face flip-back rounded-3xl overflow-hidden bg-accent-yellow text-ink-900 p-8 flex flex-col justify-between">
-              <div>
-                <div class="text-xs uppercase font-bold tracking-widest text-ink-900/60 mb-3">Was drin ist</div>
-                <ul class="space-y-3 text-sm">
-                  <li class="flex gap-3"><span class="flip-check flip-check-dark">✓</span>30 Tage geführtes Journal</li>
-                  <li class="flex gap-3"><span class="flip-check flip-check-dark">✓</span>Tägliche 5-Minuten-Übung</li>
-                  <li class="flex gap-3"><span class="flip-check flip-check-dark">✓</span>Basiert auf Neurowissenschaft</li>
-                  <li class="flex gap-3"><span class="flip-check flip-check-dark">✓</span>Ausdruckbar oder digital</li>
-                </ul>
-              </div>
-              <div>
-                <div class="flex items-baseline gap-2 mb-4">
-                  <span class="line-through text-ink-900/40 text-lg">24,95 €</span>
-                  <span class="font-display font-bold text-3xl">14,95 €</span>
-                </div>
-                <button class="w-full rounded-2xl bg-ink-900 hover:bg-ink-800 text-white font-bold py-3 transition cursor-pointer">Vorbestellen →</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div data-slide-in class="flip-card group cursor-pointer min-h-[440px]">
-          <div class="flip-inner">
-            <!-- FRONT -->
-            <div class="flip-face flip-front rounded-3xl overflow-hidden bg-ink-800 border border-white/10 p-8 flex flex-col justify-between relative">
-              <div class="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-brand-500/25 blur-3xl"></div>
-              <div class="relative z-10">
-                <div class="text-xs uppercase font-bold tracking-widest text-brand-300 mb-3 flex items-center gap-2">
-                  <span class="w-8 h-[2px] bg-brand-300"></span> Kurs · Persönlichkeit
-                </div>
-                <h3 class="font-display font-bold text-4xl leading-tight">Verstehe<br />dich selbst</h3>
-                <p class="mt-4 text-white/70 text-sm leading-relaxed">
-                  Der Video-Kurs zu Persönlichkeitsstruktur, Kindheitsprägung und emotionalen Mustern. Für alle, die sich wirklich kennenlernen wollen.
-                </p>
-              </div>
-              <div class="relative z-10 flex items-end justify-between mt-6">
-                <div>
-                  <div class="text-xs text-white/50 uppercase tracking-widest">In Arbeit</div>
-                  <div class="font-display font-bold text-2xl mt-1">Coming soon</div>
-                </div>
-                <div class="rounded-full bg-white/10 px-4 py-2 text-sm font-semibold flip-hint">Umdrehen ↻</div>
-              </div>
-              <div class="product-number">03</div>
-            </div>
-            <!-- BACK -->
-            <div class="flip-face flip-back rounded-3xl overflow-hidden bg-gradient-to-br from-brand-500 to-brand-800 text-white p-8 flex flex-col justify-between">
-              <div>
-                <div class="text-xs uppercase font-bold tracking-widest text-brand-200 mb-3">Was drin ist</div>
-                <ul class="space-y-3 text-sm">
-                  <li class="flex gap-3"><span class="flip-check">✓</span>8 Video-Module (6+ Stunden)</li>
-                  <li class="flex gap-3"><span class="flip-check">✓</span>Interaktive Selbstreflexions-Tools</li>
-                  <li class="flex gap-3"><span class="flip-check">✓</span>Persönlichkeits-Test inklusive</li>
-                  <li class="flex gap-3"><span class="flip-check">✓</span>Lebenslanger Zugriff</li>
-                </ul>
-              </div>
-              <div>
-                <div class="flex items-baseline gap-2 mb-4">
-                  <span class="line-through text-white/40 text-lg">149 €</span>
-                  <span class="font-display font-bold text-3xl">79 €</span>
-                </div>
-                <button class="w-full rounded-2xl bg-white hover:bg-accent-yellow text-brand-700 font-bold py-3 transition cursor-pointer">Vorbestellen →</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -617,6 +508,6 @@
     </div>
   </footer>
 
-  <script src="./js/main.js?v=12"></script>
+  <script src="./js/main.js?v=13"></script>
 </body>
 </html>
