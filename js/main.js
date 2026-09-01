@@ -373,7 +373,7 @@ if (matchMedia('(hover: none)').matches) {
 
 // ----- Live YouTube channel stats (via Pages Function proxy) -----
 const STATS_CACHE  = 'ks-yt-stats-v1';
-const STATS_TTL    = 30 * 60 * 1000; // 30 minutes
+const STATS_TTL    = 24 * 60 * 60 * 1000; // 24 hours
 
 async function fetchYouTubeStats() {
   try {

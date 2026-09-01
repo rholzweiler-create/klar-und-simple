@@ -13,7 +13,7 @@ export async function onRequestGet({ env }) {
 
   try {
     const res = await fetch(url, {
-      cf: { cacheTtl: 900, cacheEverything: true }, // 15 min edge cache
+      cf: { cacheTtl: 86400, cacheEverything: true }, // 24 h edge cache
     });
     const data = await res.json();
     const s = data?.items?.[0]?.statistics;
@@ -34,7 +34,7 @@ function json(body, status = 200) {
     status,
     headers: {
       'Content-Type': 'application/json',
-      'Cache-Control': 'public, max-age=900, s-maxage=900',
+      'Cache-Control': 'public, max-age=86400, s-maxage=86400',
     },
   });
 }
