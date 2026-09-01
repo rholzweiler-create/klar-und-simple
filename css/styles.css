@@ -177,10 +177,10 @@ body {
 .videos-track.is-scrolling {
   animation: videos-marquee 20s linear infinite !important;
 }
-.videos-carousel:hover .videos-track.is-scrolling,
-.videos-carousel.is-touching .videos-track.is-scrolling {
-  animation-play-state: paused;
+@media (hover: hover) and (pointer: fine) {
+  .videos-carousel:hover .videos-track.is-scrolling { animation-play-state: paused; }
 }
+.videos-carousel.is-touching .videos-track.is-scrolling { animation-play-state: paused; }
 @keyframes videos-marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(calc(-50% - 12px)); } /* 12px = half of gap-6 */
@@ -489,7 +489,9 @@ body {
 }
 .testi-track-1 { animation-name: testi-scroll-left; }
 .testi-track-2 { animation-name: testi-scroll-right; animation-duration: 50s; }
-.testimonial-marquee:hover .testi-track,
+@media (hover: hover) and (pointer: fine) {
+  .testimonial-marquee:hover .testi-track { animation-play-state: paused; }
+}
 .testimonial-marquee.is-touching .testi-track { animation-play-state: paused; }
 @keyframes testi-scroll-left {
   from { transform: translateX(0); }
