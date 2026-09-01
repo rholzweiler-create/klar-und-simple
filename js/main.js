@@ -460,7 +460,7 @@ if (nlForm) {
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.status === 'ok') {
         status.className = 'block text-center rounded-xl p-3 bg-green-500/20 text-green-300 border border-green-500/30 text-sm';
-        status.textContent = 'Danke! Check kurz dein Postfach — dort wartet die Bestätigungsmail.';
+        status.innerHTML = 'Danke! Check kurz dein Postfach — dort wartet die Bestätigungsmail.<br /><span class="text-green-200/80 text-xs mt-1 inline-block">Falls sie nicht ankommt: schau bitte auch im <strong>Spam-Ordner</strong> nach.</span>';
         nlForm.reset();
         label.textContent = 'Angemeldet ✓';
       } else {
