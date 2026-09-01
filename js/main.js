@@ -150,8 +150,8 @@ function renderVideos(items) {
     track.appendChild(clone);
   });
 
-  // Set animation duration based on number of cards (slow enough to read)
-  const duration = Math.max(30, list.length * 6);
+  // Set animation duration based on number of cards
+  const duration = Math.max(18, list.length * 3);
   track.style.setProperty('--marquee-duration', duration + 's');
   track.classList.add('is-scrolling');
 }

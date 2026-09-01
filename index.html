@@ -81,30 +81,27 @@
         <a href="#about" class="hover:text-white transition cursor-pointer">Über mich</a>
         <a href="./kontakt.html" class="hover:text-white transition cursor-pointer">Kontakt</a>
       </div>
-      <div class="flex items-center gap-2">
-        <a href="https://www.youtube.com/@klarundsimple" target="_blank" rel="noopener" aria-label="YouTube-Kanal"
-           class="inline-flex items-center justify-center rounded-xl bg-white text-ink-900 w-10 h-10 sm:w-auto sm:px-4 sm:py-2 sm:h-auto text-sm font-semibold hover:bg-accent-yellow transition cursor-pointer">
-          <svg class="w-4 h-4 sm:mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.02 3.02 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.02 3.02 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.02 3.02 0 0 0 2.121 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.02 3.02 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814ZM9.545 15.568V8.432L15.818 12l-6.273 3.568Z"/></svg>
-          <span class="hidden sm:inline">YouTube</span>
-        </a>
-        <!-- Mobile hamburger -->
-        <button id="mobile-menu-btn" aria-label="Menü öffnen"
-                class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl bg-white/10 border border-white/10 text-white active:bg-white/20 transition">
-          <svg id="menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-          <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-      </div>
+      <a href="https://www.youtube.com/@klarundsimple" target="_blank" rel="noopener" aria-label="YouTube-Kanal"
+         class="inline-flex items-center justify-center rounded-xl bg-white text-ink-900 w-10 h-10 sm:w-auto sm:px-4 sm:py-2 sm:h-auto text-sm font-semibold hover:bg-accent-yellow transition cursor-pointer">
+        <svg class="w-4 h-4 sm:mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.02 3.02 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.02 3.02 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.02 3.02 0 0 0 2.121 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.02 3.02 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814ZM9.545 15.568V8.432L15.818 12l-6.273 3.568Z"/></svg>
+        <span class="hidden sm:inline">YouTube</span>
+      </a>
     </div>
 
-    <!-- Mobile dropdown menu -->
-    <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 px-4 py-3">
-      <div class="flex flex-col text-base font-medium">
-        <a href="#videos" class="py-3 border-b border-white/5 text-white/80 hover:text-white">Videos</a>
-        <a href="./playlists.html" class="py-3 border-b border-white/5 text-white/80 hover:text-white">Playlists</a>
-        <a href="#stimmen" class="py-3 border-b border-white/5 text-white/80 hover:text-white">Stimmen</a>
-        <a href="#produkte" class="py-3 border-b border-white/5 text-white/80 hover:text-white">Produkte</a>
-        <a href="#about" class="py-3 border-b border-white/5 text-white/80 hover:text-white">Über mich</a>
-        <a href="./kontakt.html" class="py-3 text-white/80 hover:text-white">Kontakt</a>
+    <!-- Mobile inline nav (second row) -->
+    <div class="md:hidden border-t border-white/10 px-2 py-2 overflow-x-auto scrollbar-hide">
+      <div class="flex items-center gap-4 text-[13px] font-medium text-white/75 whitespace-nowrap justify-center">
+        <a href="#videos" class="hover:text-white active:text-white transition py-1">Videos</a>
+        <span class="text-white/20">·</span>
+        <a href="./playlists.html" class="hover:text-white active:text-white transition py-1">Playlists</a>
+        <span class="text-white/20">·</span>
+        <a href="#stimmen" class="hover:text-white active:text-white transition py-1">Stimmen</a>
+        <span class="text-white/20">·</span>
+        <a href="#produkte" class="hover:text-white active:text-white transition py-1">Produkte</a>
+        <span class="text-white/20">·</span>
+        <a href="#about" class="hover:text-white active:text-white transition py-1">Über&nbsp;mich</a>
+        <span class="text-white/20">·</span>
+        <a href="./kontakt.html" class="hover:text-white active:text-white transition py-1">Kontakt</a>
       </div>
     </div>
   </nav>
