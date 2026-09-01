@@ -317,6 +317,17 @@ function buildTestimonial(t) {
 
 const track1 = document.querySelector('.testi-track-1');
 const track2 = document.querySelector('.testi-track-2');
+// Touch pause: hold finger to freeze the marquee, release to continue
+function bindTouchPause(el) {
+  if (!el) return;
+  const setTouching = (on) => el.classList.toggle('is-touching', on);
+  el.addEventListener('touchstart',  () => setTouching(true),  { passive: true });
+  el.addEventListener('touchend',    () => setTouching(false), { passive: true });
+  el.addEventListener('touchcancel', () => setTouching(false), { passive: true });
+}
+bindTouchPause(document.querySelector('.testimonial-marquee'));
+bindTouchPause(document.querySelector('.videos-carousel'));
+
 if (track1 && track2) {
   // Split roughly in half – odd-indexed to row 1, even to row 2 for variety
   const half1 = TESTIMONIALS.filter((_, i) => i % 2 === 0);
