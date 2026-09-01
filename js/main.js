@@ -371,6 +371,46 @@ if (matchMedia('(hover: none)').matches) {
   });
 }
 
+// ----- Live YouTube channel stats (via Pages Function proxy) -----
+const STATS_CACHE  = 'ks-yt-stats-v1';
+const STATS_TTL    = 30 * 60 * 1000; // 30 minutes
+
+async function fetchYouTubeStats() {
+  try {
+    const cached = JSON.parse(localStorage.getItem(STATS_CACHE) || 'null');
+    if (cached && Date.now() - cached.ts < STATS_TTL) return cached.data;
+  } catch {}
+
+  try {
+    const res = await fetch('/api/stats');
+    const data = await res.json();
+    if (!data || typeof data.subs !== 'number') throw new Error('bad response');
+    try { localStorage.setItem(STATS_CACHE, JSON.stringify({ ts: Date.now(), data })); } catch {}
+    return data;
+  } catch (e) {
+    console.warn('YT stats fetch failed', e);
+    return null;
+  }
+}
+
+(async () => {
+  const stats = await fetchYouTubeStats();
+  if (!stats) return; // keep hardcoded fallback
+  const counters = document.querySelectorAll('[data-counter]');
+  if (counters.length >= 3) {
+    counters[0].dataset.target = stats.subs;
+    counters[0].dataset.suffix = '';
+    counters[1].dataset.target = stats.videos;
+    counters[1].dataset.suffix = '';
+    counters[2].dataset.target = Math.floor(stats.views / 1000);
+    counters[2].dataset.suffix = 'k';
+    // if animation already ran, update text directly
+    counters[0].textContent = stats.subs.toLocaleString('de-DE');
+    counters[1].textContent = stats.videos.toLocaleString('de-DE');
+    counters[2].textContent = Math.floor(stats.views / 1000).toLocaleString('de-DE') + 'k';
+  }
+})();
+
 // ----- Scroll progress bar -----
 const progressBar = document.getElementById('scroll-progress');
 if (progressBar) {
