@@ -66,43 +66,31 @@
 
   <!-- ===== Navigation ===== -->
   <nav id="nav" class="fixed top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 z-50 rounded-2xl backdrop-blur-xl bg-ink-800/70 border border-white/10 transition-all">
-    <div class="max-w-7xl mx-auto flex items-center justify-between px-3 sm:px-6 py-3">
-      <a href="#top" class="flex items-center gap-2 group">
+    <div class="max-w-7xl mx-auto flex items-center gap-3 px-3 sm:px-6 py-3">
+      <a href="#top" class="flex items-center gap-2 group shrink-0">
         <div class="w-10 h-10 rounded-xl bg-brand-500 grid place-items-center font-display font-bold text-lg relative overflow-hidden shadow-lg shadow-brand-500/30">
           <span class="relative z-10">KS</span>
         </div>
-        <span class="font-display font-bold text-lg tracking-tight hidden sm:inline">Klar &amp; Simple</span>
+        <span class="font-display font-bold text-lg tracking-tight hidden lg:inline">Klar &amp; Simple</span>
       </a>
-      <div class="hidden md:flex items-center gap-6 text-sm font-medium text-white/70">
-        <a href="#videos" class="hover:text-white transition cursor-pointer">Videos</a>
-        <a href="./playlists.html" class="hover:text-white transition cursor-pointer">Playlists</a>
-        <a href="#stimmen" class="hover:text-white transition cursor-pointer">Stimmen</a>
-        <a href="#produkte" class="hover:text-white transition cursor-pointer">Produkte</a>
-        <a href="#about" class="hover:text-white transition cursor-pointer">Über mich</a>
-        <a href="./kontakt.html" class="hover:text-white transition cursor-pointer">Kontakt</a>
-      </div>
-      <a href="https://www.youtube.com/@klarundsimple" target="_blank" rel="noopener" aria-label="YouTube-Kanal"
-         class="inline-flex items-center justify-center rounded-xl bg-white text-ink-900 w-10 h-10 sm:w-auto sm:px-4 sm:py-2 sm:h-auto text-sm font-semibold hover:bg-accent-yellow transition cursor-pointer">
-        <svg class="w-4 h-4 sm:mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.02 3.02 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.02 3.02 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.02 3.02 0 0 0 2.121 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.02 3.02 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814ZM9.545 15.568V8.432L15.818 12l-6.273 3.568Z"/></svg>
-        <span class="hidden sm:inline">YouTube</span>
-      </a>
-    </div>
 
-    <!-- Mobile inline nav (second row) -->
-    <div class="md:hidden border-t border-white/10 px-2 py-2 overflow-x-auto scrollbar-hide">
-      <div class="flex items-center gap-4 text-[13px] font-medium text-white/75 whitespace-nowrap justify-center">
-        <a href="#videos" class="hover:text-white active:text-white transition py-1">Videos</a>
-        <span class="text-white/20">·</span>
-        <a href="./playlists.html" class="hover:text-white active:text-white transition py-1">Playlists</a>
-        <span class="text-white/20">·</span>
-        <a href="#stimmen" class="hover:text-white active:text-white transition py-1">Stimmen</a>
-        <span class="text-white/20">·</span>
-        <a href="#produkte" class="hover:text-white active:text-white transition py-1">Produkte</a>
-        <span class="text-white/20">·</span>
-        <a href="#about" class="hover:text-white active:text-white transition py-1">Über&nbsp;mich</a>
-        <span class="text-white/20">·</span>
-        <a href="./kontakt.html" class="hover:text-white active:text-white transition py-1">Kontakt</a>
+      <!-- Swipeable nav links (mobile & tablet), auto-spaced on desktop -->
+      <div class="flex-1 overflow-x-auto scrollbar-hide">
+        <div class="flex items-center gap-5 md:gap-6 lg:justify-end text-sm font-medium text-white/75 whitespace-nowrap px-1">
+          <a href="#videos" class="hover:text-white transition cursor-pointer shrink-0">Videos</a>
+          <a href="./playlists.html" class="hover:text-white transition cursor-pointer shrink-0">Playlists</a>
+          <a href="#stimmen" class="hover:text-white transition cursor-pointer shrink-0">Stimmen</a>
+          <a href="#produkte" class="hover:text-white transition cursor-pointer shrink-0">Produkte</a>
+          <a href="#about" class="hover:text-white transition cursor-pointer shrink-0">Über&nbsp;mich</a>
+          <a href="./kontakt.html" class="hover:text-white transition cursor-pointer shrink-0">Kontakt</a>
+        </div>
       </div>
+
+      <a href="https://www.youtube.com/@klarundsimple" target="_blank" rel="noopener" aria-label="YouTube-Kanal"
+         class="inline-flex items-center justify-center rounded-xl bg-white text-ink-900 w-10 h-10 lg:w-auto lg:px-4 lg:py-2 lg:h-auto text-sm font-semibold hover:bg-accent-yellow transition cursor-pointer shrink-0">
+        <svg class="w-4 h-4 lg:mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.02 3.02 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.02 3.02 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.02 3.02 0 0 0 2.121 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.02 3.02 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814ZM9.545 15.568V8.432L15.818 12l-6.273 3.568Z"/></svg>
+        <span class="hidden lg:inline">YouTube</span>
+      </a>
     </div>
   </nav>
 

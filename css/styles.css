@@ -166,7 +166,7 @@ body {
 
 /* ============ Marquee (topic band) ============ */
 .marquee {
-  animation: marquee 20s linear infinite;
+  animation: marquee 55s linear infinite;
 }
 @keyframes marquee {
   from { transform: translateX(0); }
