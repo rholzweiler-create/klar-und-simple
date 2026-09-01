@@ -150,8 +150,8 @@ function renderVideos(items) {
     track.appendChild(clone);
   });
 
-  // Set animation duration based on number of cards (match testimonial speed ~55s)
-  const duration = Math.max(45, list.length * 6);
+  // Set animation duration based on number of cards
+  const duration = Math.max(25, list.length * 3);
   track.style.setProperty('--marquee-duration', duration + 's');
   track.classList.add('is-scrolling');
 }

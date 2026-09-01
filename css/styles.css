@@ -166,7 +166,7 @@ body {
 
 /* ============ Marquee (topic band) ============ */
 .marquee {
-  animation: marquee 55s linear infinite;
+  animation: marquee 25s linear infinite;
 }
 @keyframes marquee {
   from { transform: translateX(0); }
@@ -477,13 +477,13 @@ body {
 .testimonial-marquee { overflow: hidden; }
 .testi-track {
   width: max-content;
-  animation-duration: 60s;
+  animation-duration: 30s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   will-change: transform;
 }
 .testi-track-1 { animation-name: testi-scroll-left; }
-.testi-track-2 { animation-name: testi-scroll-right; animation-duration: 50s; }
+.testi-track-2 { animation-name: testi-scroll-right; animation-duration: 26s; }
 .testimonial-marquee:hover .testi-track { animation-play-state: paused; }
 @keyframes testi-scroll-left {
   from { transform: translateX(0); }
