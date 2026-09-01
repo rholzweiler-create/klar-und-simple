@@ -254,6 +254,7 @@ body {
 @media (max-width: 640px) {
   .banner-title {
     font-size: clamp(2.75rem, 17.5vw, 6rem) !important;
+    transform: translateX(-0.15em);
   }
 }
 
