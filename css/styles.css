@@ -171,6 +171,19 @@ body { font-feature-settings: "ss01", "cv11"; }
   to   { transform: translateX(calc(-50% - 12px)); } /* 12px = half of gap-6 */
 }
 
+/* Touch devices: disable auto-marquee, allow finger swipe */
+@media (hover: none) and (pointer: coarse) {
+  .videos-carousel {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .videos-carousel::-webkit-scrollbar { display: none; }
+  .videos-track.is-scrolling { animation: none !important; transform: none !important; }
+  .videos-track .video-card { scroll-snap-align: start; }
+}
+
 /* ============ Video card ============ */
 .video-card {
   position: relative;
@@ -469,6 +482,17 @@ body { font-feature-settings: "ss01", "cv11"; }
 .testi-track-1 { animation-name: testi-scroll-left; }
 .testi-track-2 { animation-name: testi-scroll-right; animation-duration: 50s; }
 .testimonial-marquee:hover .testi-track { animation-play-state: paused; }
+
+@media (hover: none) and (pointer: coarse) {
+  .testimonial-marquee .testi-track {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    animation: none !important;
+    transform: none !important;
+    scrollbar-width: none;
+  }
+  .testimonial-marquee .testi-track::-webkit-scrollbar { display: none; }
+}
 @keyframes testi-scroll-left {
   from { transform: translateX(0); }
   to   { transform: translateX(calc(-50% - 12px)); }
