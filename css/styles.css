@@ -325,7 +325,8 @@ body { font-feature-settings: "ss01", "cv11"; }
   transition: transform 0.9s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 .flip-card:hover .flip-inner,
-.flip-card:focus-within .flip-inner {
+.flip-card:focus-within .flip-inner,
+.flip-card.is-flipped .flip-inner {
   transform: rotateY(180deg);
 }
 .flip-face {

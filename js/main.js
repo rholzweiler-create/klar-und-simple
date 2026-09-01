@@ -343,6 +343,34 @@ if (avatarVideo) {
   videoObserver.observe(avatarVideo);
 }
 
+// ----- Mobile hamburger menu -----
+const menuBtn = document.getElementById('mobile-menu-btn');
+const menuPanel = document.getElementById('mobile-menu');
+const iconOpen = document.getElementById('menu-icon-open');
+const iconClose = document.getElementById('menu-icon-close');
+if (menuBtn && menuPanel) {
+  const toggle = (open) => {
+    const isOpen = open !== undefined ? open : menuPanel.classList.contains('hidden');
+    menuPanel.classList.toggle('hidden', !isOpen);
+    iconOpen.classList.toggle('hidden', isOpen);
+    iconClose.classList.toggle('hidden', !isOpen);
+  };
+  menuBtn.addEventListener('click', () => toggle());
+  // close when clicking a link inside the menu
+  menuPanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggle(false)));
+}
+
+// ----- Flip cards: tap to flip on touch devices -----
+if (matchMedia('(hover: none)').matches) {
+  document.querySelectorAll('.flip-card').forEach((card) => {
+    card.addEventListener('click', (e) => {
+      // If they clicked an actual link/button inside, let that action happen instead
+      if (e.target.closest('a, button')) return;
+      card.classList.toggle('is-flipped');
+    });
+  });
+}
+
 // ----- Scroll progress bar -----
 const progressBar = document.getElementById('scroll-progress');
 if (progressBar) {
