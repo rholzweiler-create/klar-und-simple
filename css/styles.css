@@ -1,6 +1,14 @@
 /* ============ Base ============ */
-html { scroll-behavior: smooth; }
-body { font-feature-settings: "ss01", "cv11"; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+body {
+  font-feature-settings: "ss01", "cv11";
+  overflow-x: hidden;
+  max-width: 100vw;
+}
 
 ::selection { background: #4166ee; color: #fff; }
 
@@ -106,6 +114,12 @@ body { font-feature-settings: "ss01", "cv11"; }
   opacity: var(--p);
   transform: translateX(calc((1 - var(--p)) * -160px)) rotate(calc((1 - var(--p)) * -4deg));
   will-change: transform, opacity;
+}
+/* On mobile: smaller translation + no rotation to avoid horizontal overflow */
+@media (max-width: 767px) {
+  [data-slide-in] {
+    transform: translateY(calc((1 - var(--p)) * 30px));
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   [data-slide-in] { --p: 1 !important; }
