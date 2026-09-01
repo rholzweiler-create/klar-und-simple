@@ -250,6 +250,13 @@ body {
   [data-reveal] { opacity: 1 !important; transform: none !important; }
 }
 
+/* ============ Banner: Mobile-only size override (Desktop bleibt via inline style) ============ */
+@media (max-width: 640px) {
+  .banner-title {
+    font-size: clamp(2.75rem, 17.5vw, 6rem) !important;
+  }
+}
+
 /* ============ Banner (Klar & Simple) animation ============ */
 .banner-title .letter {
   display: inline-block;
