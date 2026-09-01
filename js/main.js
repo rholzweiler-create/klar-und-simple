@@ -436,6 +436,45 @@ if (progressBar) {
   window.addEventListener('resize', updateProgress);
 }
 
+// ----- Newsletter form submit → Beehiiv via /api/subscribe -----
+const nlForm = document.getElementById('newsletter-form');
+if (nlForm) {
+  const btn    = document.getElementById('newsletter-btn');
+  const label  = document.getElementById('newsletter-label');
+  const status = document.getElementById('newsletter-status');
+  const email  = document.getElementById('newsletter-email');
+
+  nlForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (nlForm.honeypot.checked) return;
+    status.className = 'hidden';
+    btn.disabled = true;
+    label.textContent = 'Wird angemeldet…';
+
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.value.trim() }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.status === 'ok') {
+        status.className = 'block text-center rounded-xl p-3 bg-green-500/20 text-green-300 border border-green-500/30 text-sm';
+        status.textContent = 'Danke! Check kurz dein Postfach — dort wartet die Bestätigungsmail.';
+        nlForm.reset();
+        label.textContent = 'Angemeldet ✓';
+      } else {
+        throw new Error(data.error || 'signup failed');
+      }
+    } catch (err) {
+      status.className = 'block text-center rounded-xl p-3 bg-red-500/20 text-red-300 border border-red-500/30 text-sm';
+      status.textContent = 'Da lief was schief. Versuch es nochmal oder schreib mir per E-Mail.';
+      btn.disabled = false;
+      label.textContent = 'Jetzt kostenlos anmelden';
+    }
+  });
+}
+
 // ----- Smooth-scroll for anchor links (nav offset) -----
 document.querySelectorAll('a[href^="#"]').forEach((a) => {
   a.addEventListener('click', (e) => {
