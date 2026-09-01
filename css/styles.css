@@ -166,7 +166,7 @@ body {
 
 /* ============ Marquee (topic band) ============ */
 .marquee {
-  animation: marquee 25s linear infinite;
+  animation: marquee 15s linear infinite !important;
 }
 @keyframes marquee {
   from { transform: translateX(0); }
@@ -175,7 +175,7 @@ body {
 
 /* ============ Videos horizontal carousel ============ */
 .videos-track.is-scrolling {
-  animation: videos-marquee var(--marquee-duration, 45s) linear infinite;
+  animation: videos-marquee 20s linear infinite !important;
 }
 .videos-carousel:hover .videos-track.is-scrolling {
   animation-play-state: paused;
@@ -477,13 +477,13 @@ body {
 .testimonial-marquee { overflow: hidden; }
 .testi-track {
   width: max-content;
-  animation-duration: 30s;
+  animation-duration: 60s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   will-change: transform;
 }
 .testi-track-1 { animation-name: testi-scroll-left; }
-.testi-track-2 { animation-name: testi-scroll-right; animation-duration: 26s; }
+.testi-track-2 { animation-name: testi-scroll-right; animation-duration: 50s; }
 .testimonial-marquee:hover .testi-track { animation-play-state: paused; }
 @keyframes testi-scroll-left {
   from { transform: translateX(0); }
