@@ -175,7 +175,11 @@ body {
 
 /* ============ Videos horizontal carousel ============ */
 .videos-track.is-scrolling {
-  animation: videos-marquee 20s linear infinite !important;
+  animation-name: videos-marquee;
+  animation-duration: 20s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
 }
 @media (hover: hover) and (pointer: fine) {
   .videos-carousel:hover .videos-track.is-scrolling { animation-play-state: paused; }
