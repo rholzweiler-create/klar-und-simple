@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dein inneres Kind – das studienbasierte Arbeitsheft zum Heilen. 59 Seiten, 20 Übungen, Selbsttest, 30-Tage-Plan & 7 Audio-Übungen. Zum Ausdrucken und digital ausfüllbar. Sofort-Download." />
+  <title>Dein inneres Kind – Das Arbeitsheft | Klar &amp; Simple</title>
+
+  <link rel="canonical" href="https://klarundsimple.com/inneres-kind.html" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="product" />
+  <meta property="og:title" content="Dein inneres Kind – Das Arbeitsheft zum Heilen" />
+  <meta property="og:description" content="Studienbasiertes Arbeitsheft zum Mitmachen. 59 Seiten, Selbsttest, 30-Tage-Plan & 7 Audio-Übungen. Sofort-Download." />
+  <meta property="og:image" content="https://klarundsimple.com/public/images/inneres-kind-og.png" />
+  <meta property="og:url" content="https://klarundsimple.com/inneres-kind.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Caveat:wght@700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50:'#eef2ff',100:'#e0e7ff',200:'#c7d2fe',300:'#a5b4fc',400:'#818cf8',500:'#4166ee',600:'#3651d6',700:'#2b40b0',800:'#22348c',900:'#111a4a',950:'#080d29' },
+            ink:   { 900:'#050818', 800:'#0a0f28', 700:'#111842' },
+            accent: { yellow:'#FCD34D', red:'#EF4444' }
+          },
+          fontFamily: {
+            display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
+            body:    ['Inter', 'system-ui', 'sans-serif'],
+            hand:    ['Caveat', 'cursive'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="./css/styles.css?v=30" />
+
+  <style>
+    /* Sanfte Details, nur für diese Verkaufsseite */
+    .card-glass { background: rgba(10,15,40,.55); border:1px solid rgba(255,255,255,.10); backdrop-filter: blur(14px); }
+    .check svg { flex: 0 0 auto; }
+    .price-strike { text-decoration: line-through; text-decoration-thickness: 2px; }
+    /* Mobile Sticky-Kaufleiste */
+    #buybar { transform: translateY(120%); transition: transform .35s cubic-bezier(.4,0,.2,1); }
+    #buybar.is-visible { transform: translateY(0); }
+    @media (min-width: 768px){ #buybar{ display:none !important; } }
+    .float-mock { animation: floatMock 7s ease-in-out infinite; }
+    @keyframes floatMock { 0%,100%{ transform: translateY(0) rotate(0deg);} 50%{ transform: translateY(-14px) rotate(-.4deg);} }
+    @media (prefers-reduced-motion: reduce){ .float-mock{ animation:none; } }
+
+    /* ===== Blick ins Heft – Buch-Viewer ===== */
+    .book { perspective: 2000px; }
+    .book-stack {
+      position: relative; width: 100%; aspect-ratio: 1000 / 1414;
+      transform-style: preserve-3d;
+    }
+    /* Buchdicke: leicht versetzte Blätter dahinter */
+    .book-stack::before, .book-stack::after {
+      content: ""; position: absolute; inset: 0; border-radius: 6px 14px 14px 6px;
+      background: #f4f2ec; box-shadow: 0 30px 60px -20px rgba(0,0,0,.6);
+    }
+    .book-stack::before { transform: translate(10px, 8px) rotate(.6deg); opacity: .5; }
+    .book-stack::after  { transform: translate(5px, 4px) rotate(.3deg); opacity: .75; }
+    .page {
+      position: absolute; inset: 0; opacity: 0; z-index: 1;
+      transform: translateX(7%) rotateY(-14deg) scale(.96); transform-origin: left center;
+      transition: opacity .5s ease, transform .55s cubic-bezier(.33,.9,.3,1);
+      border-radius: 4px 12px 12px 4px; overflow: hidden;
+      box-shadow: 0 30px 60px -22px rgba(0,0,0,.7);
+      pointer-events: none;
+    }
+    .page img { display:block; width:100%; height:100%; object-fit: cover; }
+    /* Spine-Schatten (Bindung links) */
+    .page::after {
+      content:""; position:absolute; top:0; bottom:0; left:0; width:9%;
+      background: linear-gradient(90deg, rgba(0,0,0,.22), rgba(0,0,0,0));
+      pointer-events:none;
+    }
+    .page.is-active { opacity:1; transform:none; z-index:3; pointer-events:auto; }
+    .page.exit-left  { opacity:0; transform: translateX(-8%) rotateY(16deg) scale(.96); z-index:2; }
+    .page.exit-right { opacity:0; transform: translateX(8%)  rotateY(-16deg) scale(.96); z-index:2; }
+    @media (prefers-reduced-motion: reduce){
+      .page{ transition: opacity .3s ease; transform:none; }
+      .page.exit-left,.page.exit-right{ transform:none; }
+    }
+    .book-nav {
+      width:44px; height:44px; border-radius:9999px;
+      background: rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.18);
+      display:grid; place-items:center; transition: all .2s; backdrop-filter: blur(6px);
+    }
+    .book-nav:hover { background: rgba(255,255,255,.20); }
+    .book-dot { width:8px; height:8px; border-radius:9999px; background: rgba(255,255,255,.25); transition: all .25s; }
+    .book-dot.is-on { background:#FCD34D; width:22px; }
+  </style>
+</head>
+<body class="bg-ink-900 text-white font-body antialiased overflow-x-hidden">
+
+  <!-- Scroll progress bar -->
+  <div id="scroll-progress"></div>
+
+  <!-- Animated Blob Background -->
+  <div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="noise"></div>
+  </div>
+
+  <!-- Nav (schlank, wenig Ablenkung) -->
+  <nav id="nav" class="fixed top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 z-50 rounded-2xl backdrop-blur-xl bg-ink-800/70 border border-white/10 transition-all">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
+      <a href="./index.html" class="flex items-center gap-2 group shrink-0">
+        <div class="w-10 h-10 rounded-xl bg-brand-500 grid place-items-center font-display font-bold text-lg shadow-lg shadow-brand-500/30">KS</div>
+        <span class="font-display font-bold text-lg tracking-tight hidden sm:inline">Klar &amp; Simple</span>
+      </a>
+      <div class="flex items-center gap-3">
+        <a href="./index.html" class="text-sm text-white/70 hover:text-white transition cursor-pointer hidden sm:inline">← Startseite</a>
+        <a href="#bestellen" data-buy class="inline-flex items-center gap-2 rounded-xl bg-accent-yellow hover:bg-yellow-300 text-ink-900 px-4 py-2 text-sm font-bold transition cursor-pointer">
+          Jetzt sichern · 19,99&nbsp;€
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-28 sm:pt-36">
+
+    <!-- ===== HERO ===== -->
+    <section class="px-6 pb-16 sm:pb-24">
+      <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <!-- Copy -->
+        <div>
+          <div data-reveal class="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-brand-300 mb-6">
+            <span class="w-2 h-2 rounded-full bg-accent-yellow animate-pulse"></span>
+            Neu · Digitales Arbeitsheft
+          </div>
+          <h1 data-reveal class="font-display font-extrabold text-4xl sm:text-6xl leading-[0.98] tracking-tighter">
+            Dein inneres Kind.<br /><span class="text-brand-500">Das Arbeitsheft zum Heilen.</span>
+          </h1>
+          <p data-reveal class="mt-6 text-lg text-white/70 max-w-xl leading-relaxed">
+            Werde endlich der liebevolle Erwachsene, den dein inneres Kind damals gebraucht hätte. Studienbasiert, ruhig, Schritt für Schritt – zum Mitmachen statt nur zum Lesen.
+          </p>
+
+          <!-- Trust chips -->
+          <div data-reveal class="mt-7 flex flex-wrap gap-2 text-sm">
+            <span class="rounded-full bg-white/8 border border-white/12 px-3 py-1.5 font-semibold">59 Seiten</span>
+            <span class="rounded-full bg-white/8 border border-white/12 px-3 py-1.5 font-semibold">20 Übungen</span>
+            <span class="rounded-full bg-white/8 border border-white/12 px-3 py-1.5 font-semibold">Selbsttest</span>
+            <span class="rounded-full bg-white/8 border border-white/12 px-3 py-1.5 font-semibold">30-Tage-Plan</span>
+            <span class="rounded-full bg-white/8 border border-white/12 px-3 py-1.5 font-semibold">7 Audio-Übungen</span>
+          </div>
+
+          <!-- CTA -->
+          <div data-reveal class="mt-9 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <a href="#bestellen" data-buy class="group inline-flex items-center justify-center gap-2 rounded-2xl bg-accent-yellow hover:bg-yellow-300 text-ink-900 px-7 py-4 font-bold text-lg shadow-xl shadow-accent-yellow/10 transition cursor-pointer w-full sm:w-auto">
+              Jetzt herunterladen · 19,99&nbsp;€
+              <svg class="w-5 h-5 transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <div class="text-sm text-white/55 leading-tight">
+              <div class="flex items-center gap-1.5 font-semibold text-white/80">
+                <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                Sofort-Download
+              </div>
+              Sichere Zahlung über Digistore24
+            </div>
+          </div>
+        </div>
+
+        <!-- Mockup -->
+        <div data-reveal class="relative">
+          <div class="absolute -inset-8 rounded-[3rem] bg-brand-500/20 blur-3xl"></div>
+          <div class="relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl shadow-brand-950/50 bg-gradient-to-br from-brand-800/40 to-ink-900">
+            <img src="./public/images/inneres-kind-mockup.png?v=30" alt="Das Arbeitsheft „Dein inneres Kind" – gedruckt und digital ausfüllbar" class="w-full float-mock" loading="eager" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== KENNST DU DAS? ===== -->
+    <section class="px-6 py-16 sm:py-24">
+      <div class="max-w-3xl mx-auto text-center">
+        <div data-reveal class="text-brand-400 uppercase text-xs font-bold tracking-[0.3em] mb-4">Kennst du das?</div>
+        <h2 data-reveal class="font-display font-extrabold text-3xl sm:text-5xl leading-tight tracking-tight">
+          Du bist erwachsen – und reagierst<br class="hidden sm:block" /> trotzdem manchmal wie mit sieben.
+        </h2>
+        <div data-reveal class="mt-8 space-y-4 text-lg text-white/70 leading-relaxed text-left sm:text-center">
+          <p>Ein Satz deines Partners, und plötzlich fühlst du dich abgelehnt wie als Kind. Eine Absage, und die alte Angst ist wieder da, nicht zu genügen.</p>
+          <p>Du weißt, dass deine Reaktion „zu groß" ist – und kannst sie trotzdem nicht stoppen.</p>
+        </div>
+        <div data-reveal class="mt-10 rounded-2xl card-glass p-6 sm:p-8 text-left">
+          <p class="text-white/85 leading-relaxed">
+            Das ist kein Makel deines Charakters. Es ist dein <span class="text-brand-300 font-semibold">inneres Kind</span>, das sich meldet – der Teil von dir, der die Gefühle von damals gespeichert hat und heute noch sucht, was ihm gefehlt hat.
+          </p>
+          <p class="mt-4 text-white/85 leading-relaxed">
+            <span class="font-semibold text-white">Die gute Nachricht:</span> Diese Muster sind nicht in Stein gemeißelt. Du kannst lernen, sie zu erkennen, ihnen zuzuhören und ihnen etwas Neues zu geben. Genau dafür ist dieses Heft da.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WAS DICH ERWARTET (6 Teile) ===== -->
+    <section class="px-6 py-16 sm:py-24">
+      <div class="max-w-6xl mx-auto">
+        <div data-reveal class="text-center mb-14">
+          <div class="text-brand-400 uppercase text-xs font-bold tracking-[0.3em] mb-3">In 6 Teilen</div>
+          <h2 class="font-display font-extrabold text-3xl sm:text-5xl leading-tight tracking-tight">Vom Verstehen<br class="sm:hidden" /> bis zur echten Veränderung.</h2>
+          <p class="mt-5 text-white/60 max-w-2xl mx-auto">Ein klarer Weg, den du in deinem Tempo gehst – ohne Vorwissen, ohne Reizüberflutung.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- 1 -->
+          <div data-reveal class="rounded-2xl card-glass p-6 hover:border-brand-500/40 transition">
+            <div class="text-3xl mb-3">🧠</div>
+            <h3 class="font-display font-bold text-xl">Verstehen</h3>
+            <p class="mt-2 text-white/65 leading-relaxed">Was das innere Kind ist und warum es dein Leben heute noch lenkt.</p>
+          </div>
+          <!-- 2 -->
+          <div data-reveal class="rounded-2xl card-glass p-6 hover:border-brand-500/40 transition">
+            <div class="text-3xl mb-3">🔍</div>
+            <h3 class="font-display font-bold text-xl">Erkennen</h3>
+            <p class="mt-2 text-white/65 leading-relaxed">Dein Selbsttest: <em>Welche Kindheitswunde trägst du?</em> Plus deine Trigger &amp; Glaubenssätze.</p>
+          </div>
+          <!-- 3 -->
+          <div data-reveal class="rounded-2xl card-glass p-6 hover:border-brand-500/40 transition">
+            <div class="text-3xl mb-3">💛</div>
+            <h3 class="font-display font-bold text-xl">Fühlen</h3>
+            <p class="mt-2 text-white/65 leading-relaxed">Die zwei Briefe an &amp; von deinem inneren Kind, die alles verändern.</p>
+          </div>
+          <!-- 4 -->
+          <div data-reveal class="rounded-2xl card-glass p-6 hover:border-brand-500/40 transition">
+            <div class="text-3xl mb-3">🌱</div>
+            <h3 class="font-display font-bold text-xl">Heilen</h3>
+            <p class="mt-2 text-white/65 leading-relaxed">Reparenting: konkrete Werkzeuge gegen Trigger, Grübeln und den inneren Kritiker.</p>
+          </div>
+          <!-- 5 -->
+          <div data-reveal class="rounded-2xl card-glass p-6 hover:border-brand-500/40 transition">
+            <div class="text-3xl mb-3">✍️</div>
+            <h3 class="font-display font-bold text-xl">Umschreiben</h3>
+            <p class="mt-2 text-white/65 leading-relaxed">Aus alten Sätzen werden neue, tragende Wahrheiten.</p>
+          </div>
+          <!-- 6 -->
+          <div data-reveal class="rounded-2xl card-glass p-6 hover:border-brand-500/40 transition">
+            <div class="text-3xl mb-3">📅</div>
+            <h3 class="font-display font-bold text-xl">Integrieren</h3>
+            <p class="mt-2 text-white/65 leading-relaxed">Ein 30-Tage-Plan, der alles im Alltag verankert.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BLICK INS HEFT ===== -->
+    <section id="blick" class="px-6 py-16 sm:py-24">
+      <div class="max-w-5xl mx-auto">
+        <div data-reveal class="text-center mb-12">
+          <div class="text-brand-400 uppercase text-xs font-bold tracking-[0.3em] mb-3">Blick ins Heft</div>
+          <h2 class="font-display font-extrabold text-3xl sm:text-5xl leading-tight tracking-tight">Sieh selbst, wie es innen aussieht.</h2>
+          <p class="mt-5 text-white/60 max-w-2xl mx-auto">Vier echte Seiten – ruhig, klar und liebevoll gestaltet. Blättere mit den Pfeilen oder wisch, und <span class="text-white/80 font-semibold">tippe eine Seite an, um sie groß zu lesen</span>.</p>
+        </div>
+
+        <div data-reveal class="flex items-center justify-center gap-4 sm:gap-8">
+          <!-- Prev -->
+          <button type="button" id="book-prev" aria-label="Vorherige Seite" class="book-nav shrink-0 cursor-pointer">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+
+          <!-- Buch -->
+          <div class="book relative w-full max-w-[380px] sm:max-w-[440px]">
+            <div id="book-stack" class="book-stack select-none cursor-zoom-in" role="group" aria-label="Leseprobe – 4 Seiten, antippen zum Vergrößern" tabindex="0">
+              <figure class="page is-active"><img src="./public/images/probe-01-verstehen.jpg?v=31" alt="Leseprobe: Kapitel „Verstehen"" loading="lazy" draggable="false" /></figure>
+              <figure class="page"><img src="./public/images/probe-02-bindungsmuster.jpg?v=31" alt="Leseprobe: Dein Bindungsmuster" loading="lazy" draggable="false" /></figure>
+              <figure class="page"><img src="./public/images/probe-03-trigger.jpg?v=31" alt="Leseprobe: Trigger im Moment beruhigen" loading="lazy" draggable="false" /></figure>
+              <figure class="page"><img src="./public/images/probe-04-umschreiben.jpg?v=31" alt="Leseprobe: Von alten zu neuen Wahrheiten (Umschreiben)" loading="lazy" draggable="false" /></figure>
+            </div>
+            <!-- Antipp-Hinweis -->
+            <div class="absolute bottom-3 right-3 z-40 pointer-events-none inline-flex items-center gap-1.5 rounded-full bg-ink-900/85 border border-white/15 px-3 py-1.5 text-xs font-semibold backdrop-blur">
+              <svg class="w-3.5 h-3.5 text-accent-yellow" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 8v6M8 11h6M17 11a6 6 0 11-12 0 6 6 0 0112 0z"/></svg>
+              Antippen zum Lesen
+            </div>
+          </div>
+
+          <!-- Next -->
+          <button type="button" id="book-next" aria-label="Nächste Seite" class="book-nav shrink-0 cursor-pointer">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <!-- Dots + Zähler -->
+        <div data-reveal class="mt-8 flex flex-col items-center gap-3">
+          <div id="book-dots" class="flex items-center gap-2">
+            <button type="button" class="book-dot is-on cursor-pointer" data-go="0" aria-label="Seite 1"></button>
+            <button type="button" class="book-dot cursor-pointer" data-go="1" aria-label="Seite 2"></button>
+            <button type="button" class="book-dot cursor-pointer" data-go="2" aria-label="Seite 3"></button>
+            <button type="button" class="book-dot cursor-pointer" data-go="3" aria-label="Seite 4"></button>
+          </div>
+          <div class="text-sm text-white/50"><span id="book-counter">1</span> / 4 · Leseprobe</div>
+          <a href="#bestellen" data-buy class="mt-3 inline-flex items-center gap-2 text-brand-300 hover:text-brand-200 font-semibold transition cursor-pointer">
+            Das ganze Heft (59 Seiten) sichern
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WARUM ANDERS ===== -->
+    <section class="px-6 py-16 sm:py-24">
+      <div class="max-w-5xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
+        <div data-reveal>
+          <div class="text-brand-400 uppercase text-xs font-bold tracking-[0.3em] mb-3">Warum dieses Heft anders ist</div>
+          <h2 class="font-display font-extrabold text-3xl sm:text-5xl leading-tight tracking-tight">Zum Mitmachen.<br />Nicht nur zum Lesen.</h2>
+          <p class="mt-5 text-white/65 leading-relaxed">Echte Übungen statt Theorie – ruhig und klar gestaltet, ganz im Klar-&-Simple-Stil.</p>
+          <a href="#bestellen" data-buy class="mt-8 inline-flex items-center gap-2 rounded-2xl bg-brand-500 hover:bg-brand-600 text-white px-6 py-3.5 font-bold transition cursor-pointer">
+            Ich will anfangen · 19,99&nbsp;€
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+
+        <ul data-reveal class="space-y-4">
+          <li class="check flex gap-3 items-start"><svg class="w-6 h-6 text-green-400 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span class="text-white/80"><span class="font-semibold text-white">Zwei Formate</span> – schön zum Ausdrucken <em>und</em> am Rechner/Tablet digital ausfüllbar.</span></li>
+          <li class="check flex gap-3 items-start"><svg class="w-6 h-6 text-green-400 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span class="text-white/80"><span class="font-semibold text-white">7 geführte Audio-Übungen</span> (~19 Min) – zum Anhören &amp; Mitmachen, wenn Schreiben zu viel ist.</span></li>
+          <li class="check flex gap-3 items-start"><svg class="w-6 h-6 text-green-400 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span class="text-white/80"><span class="font-semibold text-white">Evidenzbasiert erklärt</span> – aufgebaut auf Bindungsforschung, Schematherapie, Selbstmitgefühl &amp; ACE-Studie. Mit Quellenseite.</span></li>
+          <li class="check flex gap-3 items-start"><svg class="w-6 h-6 text-green-400 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span class="text-white/80"><span class="font-semibold text-white">Ruhig &amp; klar</span> gestaltet – keine Reizüberflutung.</span></li>
+          <li class="check flex gap-3 items-start"><svg class="w-6 h-6 text-green-400 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span class="text-white/80"><span class="font-semibold text-white">Sofort verfügbar</span> – du kannst heute noch beginnen.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== BONUS ===== -->
+    <section class="px-6 py-16 sm:py-24">
+      <div class="max-w-6xl mx-auto">
+        <div data-reveal class="text-center mb-12">
+          <div class="text-brand-400 uppercase text-xs font-bold tracking-[0.3em] mb-3">🎁 Alles inklusive</div>
+          <h2 class="font-display font-extrabold text-3xl sm:text-5xl leading-tight tracking-tight">Dein komplettes Paket.</h2>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div data-reveal class="rounded-2xl card-glass p-6 text-center"><div class="text-3xl mb-3">🎧</div><h3 class="font-display font-bold text-lg">7 Audio-Übungen</h3><p class="mt-2 text-sm text-white/60">Erdung, Reparenting, innerer Dialog u.&nbsp;a. (~19 Min)</p></div>
+          <div data-reveal class="rounded-2xl card-glass p-6 text-center"><div class="text-3xl mb-3">🗂️</div><h3 class="font-display font-bold text-lg">Erinnerungs-Karten</h3><p class="mt-2 text-sm text-white/60">Zum Ausdrucken &amp; Ausschneiden – deine neuen Wahrheiten.</p></div>
+          <div data-reveal class="rounded-2xl card-glass p-6 text-center"><div class="text-3xl mb-3">📱</div><h3 class="font-display font-bold text-lg">3 Handy-Wallpapers</h3><p class="mt-2 text-sm text-white/60">Dein täglicher, sanfter Reminder.</p></div>
+          <div data-reveal class="rounded-2xl card-glass p-6 text-center"><div class="text-3xl mb-3">📔</div><h3 class="font-display font-bold text-lg">30-Tage-Begleitjournal</h3><p class="mt-2 text-sm text-white/60">Eine eigene Tagesseite für jedes Ritual.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ANGEBOT / BESTELLEN ===== -->
+    <section id="bestellen" class="px-6 py-16 sm:py-24 scroll-mt-28">
+      <div class="max-w-3xl mx-auto">
+        <div data-reveal class="relative rounded-[2rem] overflow-hidden">
+          <div class="newsletter-gradient absolute inset-0"></div>
+          <div class="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-accent-yellow/25 blur-3xl newsletter-blob-1"></div>
+          <div class="absolute -bottom-20 -right-20 w-80 h-80 rounded-full bg-brand-300/40 blur-3xl newsletter-blob-2"></div>
+
+          <div class="relative p-1.5">
+            <div class="rounded-[1.7rem] bg-ink-900/85 backdrop-blur-xl border border-white/15 p-7 sm:p-10">
+              <div class="text-center">
+                <div class="text-brand-300 uppercase text-xs font-bold tracking-[0.3em] mb-3">Dein Paket</div>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight tracking-tight">Dein inneres Kind – komplett</h2>
+              </div>
+
+              <ul class="mt-8 space-y-3 max-w-md mx-auto">
+                <li class="flex gap-3 items-start"><svg class="w-5 h-5 text-green-400 mt-0.5 flex-none" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span class="text-white/85">Arbeitsheft, <span class="font-semibold text-white">59 Seiten</span> · 20 Übungen, Selbsttest &amp; 30-Tage-Plan</span></li>
+                <li class="flex gap-3 items-start"><svg class="w-5 h-5 text-green-400 mt-0.5 flex-none" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span class="text-white/85"><span class="font-semibold text-white">Zwei Formate</span> – zum Ausdrucken &amp; digital ausfüllbar</span></li>
+                <li class="flex gap-3 items-start"><svg class="w-5 h-5 text-green-400 mt-0.5 flex-none" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span class="text-white/85"><span class="font-semibold text-white">7 Audio-Übungen</span> (~19 Min)</span></li>
+                <li class="flex gap-3 items-start"><svg class="w-5 h-5 text-green-400 mt-0.5 flex-none" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span class="text-white/85"><span class="font-semibold text-white">Bonus:</span> 30-Tage-Begleitjournal, Erinnerungs-Karten &amp; 3 Wallpapers</span></li>
+              </ul>
+
+              <div class="mt-9 text-center">
+                <div class="flex items-end justify-center gap-2">
+                  <span class="font-display font-extrabold text-6xl leading-none">19,99&nbsp;€</span>
+                </div>
+                <div class="mt-1 text-sm text-white/50">Einmalig · inkl. MwSt. · lebenslanger Zugriff</div>
+
+                <a href="#" data-buy data-primary
+                   class="group mt-7 inline-flex items-center justify-center gap-2 rounded-2xl bg-accent-yellow hover:bg-yellow-300 text-ink-900 px-10 py-4 font-bold text-lg shadow-xl transition cursor-pointer w-full sm:w-auto">
+                  Jetzt herunterladen
+                  <svg class="w-5 h-5 transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+
+                <div class="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-white/55">
+                  <span class="inline-flex items-center gap-1.5"><svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Sofort-Download</span>
+                  <span class="inline-flex items-center gap-1.5"><svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Sichere Zahlung über Digistore24</span>
+                  <span class="inline-flex items-center gap-1.5"><svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>PayPal, Kreditkarte u.&nbsp;a.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ehrliches Wort -->
+        <div data-reveal class="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6 text-center text-sm text-white/60 leading-relaxed max-w-2xl mx-auto">
+          <span class="font-semibold text-white/80">Ein ehrliches Wort:</span> Dieses Heft ist ein liebevolles Werkzeug zur Selbstreflexion – <span class="text-white/80">kein Ersatz für eine Therapie</span>. Wenn es dir anhaltend schlecht geht, findest du im Heft Hinweise zu Anlaufstellen.
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="px-6 py-16 sm:py-24">
+      <div class="max-w-3xl mx-auto">
+        <div data-reveal class="text-center mb-12">
+          <div class="text-brand-400 uppercase text-xs font-bold tracking-[0.3em] mb-3">Häufige Fragen</div>
+          <h2 class="font-display font-extrabold text-3xl sm:text-5xl leading-tight tracking-tight">Kurz &amp; klar beantwortet.</h2>
+        </div>
+
+        <div class="space-y-3">
+          <details data-reveal class="group rounded-2xl card-glass px-6 py-5 [&_svg]:open:rotate-45">
+            <summary class="flex items-center justify-between cursor-pointer list-none font-semibold text-lg">Wie bekomme ich das Heft?<svg class="w-5 h-5 text-brand-300 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg></summary>
+            <p class="mt-3 text-white/65 leading-relaxed">Direkt nach dem Kauf als Sofort-Download – zusätzlich bekommst du den Link per E-Mail. Die Abwicklung läuft über Digistore24, einen sicheren deutschen Zahlungsanbieter.</p>
+          </details>
+          <details data-reveal class="group rounded-2xl card-glass px-6 py-5 [&_svg]:open:rotate-45">
+            <summary class="flex items-center justify-between cursor-pointer list-none font-semibold text-lg">In welchen Formaten kommt es?<svg class="w-5 h-5 text-brand-300 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg></summary>
+            <p class="mt-3 text-white/65 leading-relaxed">Als PDF zum Ausdrucken <em>und</em> als digital ausfüllbares PDF für Rechner/Tablet. Die Audio-Übungen sind MP3-Dateien. Alles zusammen in einem Download-Paket.</p>
+          </details>
+          <details data-reveal class="group rounded-2xl card-glass px-6 py-5 [&_svg]:open:rotate-45">
+            <summary class="flex items-center justify-between cursor-pointer list-none font-semibold text-lg">Brauche ich Vorwissen?<svg class="w-5 h-5 text-brand-300 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg></summary>
+            <p class="mt-3 text-white/65 leading-relaxed">Nein. Das Heft führt dich Schritt für Schritt – verständlich erklärt, ohne Fachchinesisch. Du brauchst nur Offenheit und etwas Zeit für dich.</p>
+          </details>
+          <details data-reveal class="group rounded-2xl card-glass px-6 py-5 [&_svg]:open:rotate-45">
+            <summary class="flex items-center justify-between cursor-pointer list-none font-semibold text-lg">Ist das eine Therapie?<svg class="w-5 h-5 text-brand-300 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg></summary>
+            <p class="mt-3 text-white/65 leading-relaxed">Nein. Es ist ein liebevolles Werkzeug zur Selbstreflexion und kein Ersatz für eine Therapie. Wenn es dir anhaltend schlecht geht, hol dir bitte professionelle Unterstützung – Hinweise dazu findest du im Heft.</p>
+          </details>
+          <details data-reveal class="group rounded-2xl card-glass px-6 py-5 [&_svg]:open:rotate-45">
+            <summary class="flex items-center justify-between cursor-pointer list-none font-semibold text-lg">Wie kann ich bezahlen?<svg class="w-5 h-5 text-brand-300 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg></summary>
+            <p class="mt-3 text-white/65 leading-relaxed">Bequem über Digistore24 – z.&nbsp;B. PayPal, Kreditkarte und weitere Methoden. Du bekommst automatisch eine ordnungsgemäße Rechnung.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FINAL CTA ===== -->
+    <section class="px-6 py-20 sm:py-28">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 data-reveal class="font-display font-extrabold text-3xl sm:text-5xl leading-tight tracking-tight">
+          Beginne heute, der Mensch für dich zu werden,<br class="hidden sm:block" /> den dieses Kind damals gebraucht hätte.
+        </h2>
+        <div data-reveal class="mt-9">
+          <a href="#bestellen" data-buy class="group inline-flex items-center justify-center gap-2 rounded-2xl bg-accent-yellow hover:bg-yellow-300 text-ink-900 px-8 py-4 font-bold text-lg shadow-xl transition cursor-pointer">
+            Jetzt herunterladen · 19,99&nbsp;€
+            <svg class="w-5 h-5 transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+        <p data-reveal class="mt-6 font-hand text-2xl text-brand-300">Klar &amp; Simple · Psychologie, klar erklärt</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 py-16 px-6">
+    <div class="max-w-6xl mx-auto flex flex-wrap justify-between gap-6 text-sm text-white/40">
+      <div>© <span id="year"></span> Klar &amp; Simple</div>
+      <div class="flex gap-6">
+        <a href="./index.html" class="hover:text-white transition cursor-pointer">Startseite</a>
+        <a href="./kontakt.html" class="hover:text-white transition cursor-pointer">Kontakt</a>
+        <a href="./impressum.html" class="hover:text-white transition cursor-pointer">Impressum</a>
+        <a href="./datenschutz.html" class="hover:text-white transition cursor-pointer">Datenschutz</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Sticky-Kaufleiste -->
+  <div id="buybar" class="fixed bottom-3 left-3 right-3 z-50 rounded-2xl bg-ink-800/90 backdrop-blur-xl border border-white/15 shadow-2xl px-4 py-3 flex items-center justify-between gap-3">
+    <div class="leading-tight">
+      <div class="font-display font-bold text-base">Dein inneres Kind</div>
+      <div class="text-sm text-white/60">19,99&nbsp;€ · Sofort-Download</div>
+    </div>
+    <a href="#bestellen" data-buy class="inline-flex items-center gap-1.5 rounded-xl bg-accent-yellow hover:bg-yellow-300 text-ink-900 px-4 py-2.5 font-bold text-sm transition cursor-pointer whitespace-nowrap">
+      Sichern
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+    </a>
+  </div>
+
+  <!-- Vollbild-Leseprobe (Lightbox) -->
+  <div id="lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center bg-ink-900/92 backdrop-blur-md p-4 sm:p-6" role="dialog" aria-modal="true" aria-label="Leseprobe groß ansehen">
+    <button id="lb-close" type="button" aria-label="Schließen" class="book-nav absolute top-4 right-4 z-10 cursor-pointer">
+      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <button id="lb-prev" type="button" aria-label="Vorherige Seite" class="book-nav absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-10 cursor-pointer">
+      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+    <img id="lb-img" src="" alt="Leseprobe" class="max-h-[88vh] max-w-[92vw] sm:max-w-[760px] w-auto rounded-lg shadow-2xl" draggable="false" />
+    <button id="lb-next" type="button" aria-label="Nächste Seite" class="book-nav absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-10 cursor-pointer">
+      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <div class="absolute bottom-5 left-0 right-0 text-center text-sm text-white/60 pointer-events-none"><span id="lb-counter">1</span> / 4 · Leseprobe</div>
+  </div>
+
+  <script>
+    /* =====================================================================
+       DIGISTORE24-BESTELLLINK — HIER EINTRAGEN, wenn das Produkt live ist.
+       Beispiel: const DIGISTORE_URL = "https://www.digistore24.com/product/612345";
+       Solange leer (""), scrollen alle Kauf-Buttons sanft zur Angebots-Box.
+    ===================================================================== */
+    const DIGISTORE_URL = "";
+
+    (function () {
+      const buyEls = document.querySelectorAll('[data-buy]');
+      if (DIGISTORE_URL) {
+        buyEls.forEach(a => {
+          a.setAttribute('href', DIGISTORE_URL);
+          a.setAttribute('target', '_blank');
+          a.setAttribute('rel', 'noopener');
+        });
+      } else {
+        // Kein Link gesetzt: Buttons scrollen zur Angebots-Box (Primary-Button ebenfalls),
+        // damit die Seite nie „ins Leere" klickt.
+        buyEls.forEach(a => {
+          a.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('bestellen').scrollIntoView({ behavior: 'smooth' });
+          });
+        });
+      }
+    })();
+
+    // Jahr
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Scroll progress
+    const progressBar = document.getElementById('scroll-progress');
+    if (progressBar) {
+      const upd = () => {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        progressBar.style.transform = `scaleX(${h > 0 ? Math.min(1, window.scrollY / h) : 0})`;
+      };
+      upd(); window.addEventListener('scroll', upd, { passive: true }); window.addEventListener('resize', upd);
+    }
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+    // ===== Blick ins Heft – Buch-Viewer + Vollbild-Lightbox =====
+    (function () {
+      const stack = document.getElementById('book-stack');
+      if (!stack) return;
+      const pages = [...stack.querySelectorAll('.page')];
+      const srcs = pages.map(p => p.querySelector('img').getAttribute('src'));
+      const alts = pages.map(p => p.querySelector('img').getAttribute('alt'));
+      const dots = [...document.querySelectorAll('#book-dots .book-dot')];
+      const counter = document.getElementById('book-counter');
+      let cur = 0, busy = false;
+
+      function syncMeta() {
+        dots.forEach((d, i) => d.classList.toggle('is-on', i === cur));
+        counter.textContent = cur + 1;
+      }
+      // Blättern im kleinen Buch (mit Umblätter-Animation)
+      function flip(next, dir) {
+        next = (next + pages.length) % pages.length;
+        if (next === cur || busy) return;
+        busy = true;
+        const out = pages[cur];
+        out.classList.remove('is-active');
+        out.classList.add(dir >= 0 ? 'exit-left' : 'exit-right');
+        pages[next].classList.add('is-active');
+        cur = next; syncMeta();
+        setTimeout(() => { out.classList.remove('exit-left', 'exit-right'); busy = false; }, 600);
+      }
+      const next = () => flip(cur + 1, 1);
+      const prev = () => flip(cur - 1, -1);
+
+      // ---- Lightbox ----
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lb-img');
+      const lbCounter = document.getElementById('lb-counter');
+      const renderLb = () => { lbImg.src = srcs[cur]; lbImg.alt = alts[cur]; lbCounter.textContent = cur + 1; };
+      function openLb() { renderLb(); lb.classList.remove('hidden'); lb.classList.add('flex'); document.body.style.overflow = 'hidden'; }
+      function closeLb() { lb.classList.add('hidden'); lb.classList.remove('flex'); document.body.style.overflow = ''; }
+      const lbOpen = () => !lb.classList.contains('hidden');
+      // In der Lightbox blättern: kleines Buch ohne Animation mitziehen
+      function lbGo(dir) {
+        cur = (cur + dir + pages.length) % pages.length;
+        pages.forEach((p, i) => { p.classList.remove('exit-left', 'exit-right'); p.classList.toggle('is-active', i === cur); });
+        syncMeta(); renderLb();
+      }
+
+      // Verdrahtung – kleines Buch
+      document.getElementById('book-next').addEventListener('click', e => { e.stopPropagation(); next(); });
+      document.getElementById('book-prev').addEventListener('click', e => { e.stopPropagation(); prev(); });
+      dots.forEach(d => d.addEventListener('click', () => { const t = +d.dataset.go; flip(t, t > cur ? 1 : -1); }));
+
+      // Tippen aufs Buch = groß lesen (Swipe blättert, Tap zoomt)
+      let sx = null, suppress = false;
+      stack.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+      stack.addEventListener('touchend', e => {
+        if (sx === null) return;
+        const dx = e.changedTouches[0].clientX - sx;
+        if (Math.abs(dx) > 40) { suppress = true; dx < 0 ? next() : prev(); setTimeout(() => suppress = false, 450); }
+        sx = null;
+      });
+      stack.addEventListener('click', () => { if (!suppress) openLb(); });
+      stack.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+        else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(); }
+      });
+
+      // Verdrahtung – Lightbox
+      document.getElementById('lb-close').addEventListener('click', closeLb);
+      document.getElementById('lb-next').addEventListener('click', e => { e.stopPropagation(); lbGo(1); });
+      document.getElementById('lb-prev').addEventListener('click', e => { e.stopPropagation(); lbGo(-1); });
+      lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+      document.addEventListener('keydown', e => {
+        if (!lbOpen()) return;
+        if (e.key === 'Escape') closeLb();
+        else if (e.key === 'ArrowRight') lbGo(1);
+        else if (e.key === 'ArrowLeft') lbGo(-1);
+      });
+      let lx = null;
+      lb.addEventListener('touchstart', e => { lx = e.touches[0].clientX; }, { passive: true });
+      lb.addEventListener('touchend', e => { if (lx === null) return; const dx = e.changedTouches[0].clientX - lx; if (Math.abs(dx) > 40) lbGo(dx < 0 ? 1 : -1); lx = null; });
+    })();
+
+    // Nav scrolled state + Sticky Buybar (erscheint nach Hero, verschwindet an der Angebots-Box)
+    const nav = document.getElementById('nav');
+    const buybar = document.getElementById('buybar');
+    const offer = document.getElementById('bestellen');
+    const onScroll = () => {
+      nav.classList.toggle('is-scrolled', window.scrollY > 20);
+      const offerTop = offer.getBoundingClientRect().top;
+      const show = window.scrollY > 600 && offerTop > window.innerHeight * 0.4;
+      buybar.classList.toggle('is-visible', show);
+    };
+    onScroll(); window.addEventListener('scroll', onScroll, { passive: true }); window.addEventListener('resize', onScroll);
+  </script>
+</body>
+</html>
